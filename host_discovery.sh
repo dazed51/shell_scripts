@@ -2,8 +2,6 @@
 
 #About: This script is meant to be a quick way to discover basic information for host
 
-#How to: When using this script from bseadm jumpbox, you can run in the following ways:
-
 #ssh  <HOST or HOST.FQDN> 'bash -s' < host_discovery.sh
 
 #TODO: fqdn function, other improvements
