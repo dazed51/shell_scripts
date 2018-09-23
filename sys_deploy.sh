@@ -16,6 +16,11 @@ pull=$(apt-add-repository ppa:ansible/ansible -y)
 updaterepo=$(apt-get update && apt-get upgrade -y)
 ansibleinstall=$(apt-get install ansible -y)
 getatom=$(wget https://atom.io/download/deb)
+getsnapd=$(apt-get install snapd -y)
+
+#ansible location
+
+atower='/etc/ansible/hosts'
 
 echo -e "installing git" $gitinstall
 echo -e "installing commons" $ansiblerepo
@@ -27,6 +32,12 @@ echo "installing ansible" $ansibleinstall
 echo "updating system" $upaterepo
 
 echo -e "\n\n"
+
+echo -e "installing snap to install stuff" $getsnapd
+
+snap install spotify
+snap install tusk
+
 
 if [ $? -eq 0 ]; then
     echo -e "git installed successfully..verifying" 
@@ -40,6 +51,14 @@ sleep 3
 sleep 2
 dpkg -i *.deb
 echo -e "grabbing atom text editor and installing" $getatom
+
+
+echo -e "adding ansible tower"
+
+cat << tower >> $atower
+[localhost]
+localhost
+tower
 
 echo -e "cloning repo sys setup repo"
 
