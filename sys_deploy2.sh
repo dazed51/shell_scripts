@@ -10,19 +10,39 @@ sleep 2
 
 echo -e "this script will also install ansible, and clone it"
 
-gitinstall=$(dnf install git -y ) 
-updaterepo=$(dnf update && dnf upgrade -y)
-ansibleinstall=$(dnf install ansible -y)
-getatom=$(wget https://atom.io/download/rpm)
-
-echo -e "installing git" $gitinstall
-echo -e "installing commons" $ansiblerepo
-echo -e " installing ansible repo" $pull
+echo -e "adding rpmfusion"
+dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 sleep 2
 
-echo "installing ansible" $ansibleinstall
-echo "updating system" $upaterepo
+echo -e "updating repos"
+updater=$(dnf update && dnf upgrade -y)
+if [ $? -eq 0 ]; then
+   echo -e "updates applied successfully"
+else
+   echo -e "check why updates failed"
+   exit 1
+fi
+
+pkgs=(
+"ansible"
+"kernel-devel"
+"gcc"
+"make"
+"flex"
+"bison"
+"flatpak"
+"vlc"
+"python-pip"
+)
+
+for i in "${pkgs[@]}"
+do 
+   dnf install $i -y;
+done
+
+atower='/etc/ansible/hosts'
 
 echo -e "\n\n"
 
@@ -32,16 +52,18 @@ if [ $? -eq 0 ]; then
     which ansible
 fi
 
-sleep 3
+echo -e "adding some stuff from pip repos and installing"
+pip install youtube-dl
 
+echo -e "installing flatpak repo and pkgs"
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-sleep 2
-rpm -ivh *.rpm
-echo -e "grabbing atom text editor and installing" $getatom
+echo -e "adding ansible tower"
 
-echo -e "cloning repo sys setup repo"
-
-sleep 5
+cat << tower >> $atower
+[localhost]
+localhost
+tower
 
 git clone https://github.com/dazed51/ansible_other.git
 
