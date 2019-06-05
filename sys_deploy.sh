@@ -10,26 +10,24 @@ sleep 2
 
 echo -e "this script will also install ansible, and clone it"
 
-gitinstall=$(apt-get install git -y )
-ansiblerepo=$(apt-get install software-properties-common -y) 
-pull=$(apt-add-repository ppa:ansible/ansible -y)
-updaterepo=$(apt-get update && apt-get upgrade -y)
-ansibleinstall=$(apt-get install ansible -y)
-getatom=$(wget https://atom.io/download/deb)
-getsnapd=$(apt-get install snapd -y)
+aptpkgs=(
+"cmake"
+"make"
+"gcc"
+"python-pip"
+"cmus"
+"rtorrent"
+"vim"
+"snapd"
+
+for i in "${aptpkgs[@]}"
+do
+    aptitude install $i -y
+done
 
 #ansible location
 
 atower='/etc/ansible/hosts'
-
-echo -e "installing git" $gitinstall
-echo -e "installing commons" $ansiblerepo
-echo -e " installing ansible repo" $pull
-
-sleep 2
-
-echo "installing ansible" $ansibleinstall
-echo "updating system" $upaterepo
 
 echo -e "\n\n"
 
@@ -44,16 +42,6 @@ if [ $? -eq 0 ]; then
     which git
     which ansible
 fi
-
-sleep 3
-
-
-sleep 2
-dpkg -i *.deb
-echo -e "grabbing atom text editor and installing" $getatom
-
-
-echo -e "adding ansible tower"
 
 cat << tower >> $atower
 [localhost]
