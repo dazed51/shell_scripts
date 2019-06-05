@@ -19,6 +19,8 @@ aptpkgs=(
 "rtorrent"
 "vim"
 "snapd"
+)
+
 
 for i in "${aptpkgs[@]}"
 do
