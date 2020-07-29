@@ -2,7 +2,10 @@
 
 #script to install splunk forwarder on centos/debian/ubuntu/machines
 
-#HOWTO: where latest x x is the in the script, add the pacakge to be installed and then uncomment the line as needed
+#HOWTO: 
+
+# - where latest x x is the in the script, add the pacakge to be installed and then uncomment the line as needed
+# - enter ip address of forwarder server and deploy server if its apply's to your setup
 
 set -xe
 
@@ -29,8 +32,8 @@ echo -e "starting splunk at boot, communication with forwarder server, and deplo
 sleep 2
 
 /opt/splunkforwarder/bin/splunk enable boot-start #accept license, enter creds for admin user
-/opt/splunkforwarder/bin/splunk add forward-server 192.168.3.133:9997
-/opt/splunkforwarder/bin/splunk set deploy-poll 192.168.3.135:8089
+/opt/splunkforwarder/bin/splunk add forward-server x.x.x.x:9997 #enter forwarder ip 
+/opt/splunkforwarder/bin/splunk set deploy-poll x.x.x.x:8089 #enter deploy  ip 
 
 if [ $? -eq 0 ]; then
    echo -e "boot start, and comm started successfully"
