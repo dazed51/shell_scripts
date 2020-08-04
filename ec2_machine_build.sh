@@ -1,5 +1,4 @@
-
-#!/bin/bash
+!/bin/bash
 shopt -u nocasematch
 set -xe
 
@@ -82,42 +81,12 @@ bbanner='/etc/thebrain'
 echo -e "setting the brain ssh banner..."
 sleep 2
 
-cat  << brain >> $bbanner
+cat /home/vagrant/shell_scripts/thebrain > /etc/thebrain
 
- z@#"%c                      .uuzm**"""""*%mu..             z*"` .e@#N      
-   @!!!R.  #c              .z*"                    ^*c       z    dT!!!!!>     
-  '!!!!!!N   "i         u*"                            #s  :"   @?!!!!!!!R     
-  t!!!!!!!#u   "i    .@                                  ^$   :R!!!!!!!!!X     
-  '!!!!!!!!!#c   "i:#                                      ?> R!!!!!!!!!!X     
-  '!!!!!!!!!!!N   @                                         4W!!!!!!!!!!!>     
-  '!!!!!!!!!!!!Ru"                                           ?!!!!!!!!!!X      
-  'X!!!!!!!!!!!9~                                      .  .  'X!!!!!!!!!6      
-   R!!!!!!!!!!tF                                     z$#`   h &!!UR!!!!!F      
-   ?!!!!!$X!!!$                                    .@       X $WTR!!!!!X       
-    M!!!!!i#U!E  .                                @F        ! FdR!!!!!!f       
-    'X!!!!!#c'?u@#"*$N.                         :$          F'9!!!!!!!@        
-     9!!!!!!!?NM      ^*c                      dF          ' @!!!!!!!X>        
-      R!!!!!!!!&         "e                   d            K<!!!!!!!XF         
-      'X!!!!!!!M>          ^N                f            < E!!!!!!X"          
-        t!!!!!!!#            ^N            :"      .e$"^  Fn!!!!!XP            
-         #X!!!!!!ML             *c       z"    .e$$$$$   M'!!!!W*              
-           "*UX!!X@t  ^%u.         ""**#).zd$$#$$$$$$$  <\*@**"                
-                    'N    4$$$$$@$$$)$$#$$k4$$$$$$$$$E :$                      
-                       ?>  "$$$$$$":$$$W$$$ "$$$$$$$$   %                      
-                      :"           ? ^#*"  S  "$$$$$     ?                     
-                      F            L      d$L            X                     
-                      &           t$i    @$$$           f                      
-                       *          $$$$$$$$$$\&        @                        
-                        '*.      W'$$$$$$$$FM h    u#                          
-                           ^*muz* % $$$$$$":    `"                             
-                                   # ^**" d                                    
-                                     "***"
-
-brain
 }
 the_brain
 
 sleep 2
 
 echo -e "syncing repos, and checking for any updates.. "
-aptitude update -y && aptitude upgrade dist-upgrade -y  && aptitude clean
+aptitude update -y && aptitude  dist-upgrade -y  && aptitude clean
