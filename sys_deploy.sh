@@ -11,6 +11,7 @@ sleep 2
 echo -e "this script will also install ansible, and clone it"
 
 aptpkgs=(
+
 "cmake"
 "make"
 "gcc"
@@ -19,6 +20,15 @@ aptpkgs=(
 "rtorrent"
 "vim"
 "snapd"
+"bpftrace"
+"terminator"
+"ruby"
+"ruby-dev"
+"gedit"
+"git"
+"ansible"
+"bcc"
+"bc"
 )
 
 
@@ -33,11 +43,12 @@ atower='/etc/ansible/hosts'
 
 echo -e "\n\n"
 
-echo -e "installing snap to install stuff" $getsnapd
+echo -e "installing snap to install stuff"
 
-snap install spotify
-snap install tusk
-
+#snap install signal-desktop
+#snap install tusk
+#snap install --classic
+snap install slack --classic
 
 if [ $? -eq 0 ]; then
     echo -e "git installed successfully..verifying" 

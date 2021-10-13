@@ -11,7 +11,7 @@ else
    exit 1
 fi
 
-function rmnetplan () {
+rmnetplan () {
    echo -e "removing netplan"
    aptitude remove netplan.io -y -qq
    aptitude purge netplan.io -y  -qq
@@ -41,7 +41,7 @@ sleep 2
 
 echo -e "enabling networkd system and adding networkd dhcp conifguration"
 
-function netdconfig () {
+netdconfig () {
 
 systemctl enable systemd-networkd
 sleep 2
@@ -64,7 +64,7 @@ EOF
 }
 netdconfig
 
-function dnsdconfig() {
+dnsdconfig() {
 
 echo -e "enabling systemd-resolved"
 systemctl enable systemd-resolved

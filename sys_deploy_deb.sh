@@ -27,7 +27,8 @@ pkgs=(
 "libvert-daemon-system"
 "bridge-utils"
 "virtinst"
-
+"sudo"
+"git"
 )
 
 for i in "${pkgs[@]}"
@@ -48,11 +49,11 @@ fi
 echo -e "adding some stuff from pip repos and installing"
 pip install youtube-dl
 
-echo -e "adding wireguard repo"
-echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable.list
-printf 'Package: *\nPin: release a=unstable\nPin-Priority: 90\n' > /etc/apt/preferences.d/limit-unstable
+#echo -e "adding wireguard repo"
+#echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable.list
+#printf 'Package: *\nPin: release a=unstable\nPin-Priority: 90\n' > /etc/apt/preferences.d/limit-unstable
 sleep 2
-echo -e "updating repo after adding wireguard"
+#echo -e "updating repo after adding wireguard"
 aptitude update
 
 echo -e "adding ansible tower"
