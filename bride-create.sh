@@ -77,9 +77,9 @@ cat > ${netdir}/br0.network << EOF2
 Name=br0
 
 [Network]
-DNS=1.1.1.1
-Address=172.20.4.250/24
-Gateway=172.20.1.1
+DNS=x.x.x.x
+Address=x.x.x.x
+Gateway=x.x.x.x
 EOF2
 if [ $? -eq 0 ]; then
    echo -e "files info added successfully"
