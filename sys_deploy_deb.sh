@@ -19,7 +19,7 @@ pkgs=(
 "flex"
 "bison"
 "vlc"
-"python-pip"
+"python3-pip"
 "cmus"
 "rtorrent"
 "qemu-kvm"
@@ -29,6 +29,7 @@ pkgs=(
 "virtinst"
 "sudo"
 "git"
+
 )
 
 for i in "${pkgs[@]}"

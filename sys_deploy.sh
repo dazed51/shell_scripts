@@ -29,6 +29,7 @@ aptpkgs=(
 "ansible"
 "bcc"
 "bc"
+"python3-pip"
 )
 
 

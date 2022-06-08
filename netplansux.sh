@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 echo -e "script must but run as root, or at least have privledges to it"
 

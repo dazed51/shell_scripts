@@ -48,8 +48,12 @@ pkgs=(
 "clang"
 "firefox"
 "open-vm-tools"
+"thunderbird"
 "git"
-"akmod-nvidia"
+#akmod-nvidia"
+"arc-theme"
+"podman"
+"podman-compose"
 )
 
 for i in "${pkgs[@]}"
@@ -70,6 +74,22 @@ fi
 
 echo -e "installing flatpak repo and pkgs"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+echo -e "installing flatpaks now..."
+sleep 2
+
+for i in com.visualstudio.code  org.eclipse.Java  org.signal.Signal  com.slack.Slack; \
+   do flatpak install flathub $i -y ; \ 
+done \
+
+#echo -e "installing desktop.."
+#dnf groupinstall "Xfce Desktop" -y
+
+#echo -e "enabling display manager.."
+#systemctl disable gdm
+#systemctl enable lightdm && systemctl set-default graphical.target
+
+sleep 2
 
 echo -e "adding ansible tower"
 
